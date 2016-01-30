@@ -1,1 +1,136 @@
-!function(e){function t(i){if(n[i])return n[i].exports;var o=n[i]={exports:{},id:i,loaded:!1};return e[i].call(o.exports,o,o.exports,t),o.loaded=!0,o.exports}var n={};return t.m=e,t.c=n,t.p="/public/",t(0)}([function(e,t,n){(function(e){"use strict";!function(){var t={styleEle:document.createElement("style")};t.init=function(){t.appendStyleEle(),t.setStyle(),t.bind()},t.appendStyleEle=function(){document.documentElement.firstElementChild.appendChild(t.styleEle)},t.setStyle=function(){var e=document.documentElement,n=e.clientWidth,i=navigator.userAgent,o="}";!i.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)&&n>1024&&(n=640,o=";max-width:"+n+"px;margin-right:auto!important;margin-left:auto!important;}"),t.rem=n/10,/ZTE U930_TD/.test(i)&&(t.rem*=1.13),/M351 /.test(i)&&(t.rem/=1.05),window.rem=t.rem,t.styleEle.innerHTML="html{font-size:"+t.rem+"px!important;}body{font-size:"+12*(n/320)+"px"+o},t.bind=function(){window.addEventListener("resize",function(){t.setStyle()},!1),window.addEventListener("pageshow",function(e){e.persisted&&t.setStyle()},!1)},t.init(),"undefined"!=typeof e&&"undefined"!=typeof e["export"]?e["export"]=t:window.mBase=t}()}).call(t,n(2)(e))},,function(e,t){e.exports=function(e){return e.webpackPolyfill||(e.deprecate=function(){},e.paths=[],e.children=[],e.webpackPolyfill=1),e}}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/public/";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 0:
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
+
+	/**
+	 *
+	 * Created by jarvis on 11/2/15.
+	 */
+
+	;(function () {
+	  var mBase = {
+	    styleEle: document.createElement('style')
+	  };
+
+	  mBase.init = function () {
+	    mBase.appendStyleEle();
+	    mBase.setStyle();
+	    mBase.bind();
+	  };
+
+	  mBase.appendStyleEle = function () {
+	    document.documentElement.firstElementChild.appendChild(mBase.styleEle);
+	  };
+
+	  mBase.setStyle = function () {
+	    var htmlEle = document.documentElement;
+	    var clientWidth = htmlEle.clientWidth;
+	    var ua = navigator.userAgent;
+	    var styleSheet = '}';
+
+	    if (!ua.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i) && clientWidth > 1024) {
+	      clientWidth = 640;
+	      styleSheet = ';max-width:' + clientWidth + 'px;margin-right:auto!important;margin-left:auto!important;}';
+	    }
+
+	    mBase.rem = clientWidth / 10;
+
+	    if (/ZTE U930_TD/.test(ua)) {
+	      mBase.rem *= 1.13;
+	    }
+
+	    if (/M351 /.test(ua)) {
+	      mBase.rem /= 1.05;
+	    }
+
+	    window.rem = mBase.rem;
+	    mBase.styleEle.innerHTML = "html{font-size:" + mBase.rem + "px!important;}body{font-size:" + 12 * (clientWidth / 320) + "px" + styleSheet;
+	  };
+
+	  mBase.bind = function () {
+	    window.addEventListener('resize', function () {
+	      mBase.setStyle();
+	    }, false);
+
+	    window.addEventListener('pageshow', function (e) {
+	      if (e.persisted) {
+	        mBase.setStyle();
+	      }
+	    }, false);
+	  };
+
+	  mBase.init();
+
+	  if (typeof module != 'undefined' && typeof module.export != 'undefined') {
+	    module.export = mBase;
+	  } else {
+	    window.mBase = mBase;
+	  }
+	})();
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)(module)))
+
+/***/ },
+
+/***/ 7:
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ }
+
+/******/ });

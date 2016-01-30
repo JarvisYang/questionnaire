@@ -1,15 +1,15 @@
 /**
  * Created by jarvis on 16/1/18.
  */
-
-require('./bin/models/index');
+var db = require('./bin/models/index');
+var setting = require('./setting');
 
 var questionList = [
 	{
 		id: 0,
 		question: '性别：',
 		type: 'sex',
-		option: []
+		option: ['男', '女']
 	},
 	{
 		id: 1,
@@ -25,9 +25,31 @@ var questionList = [
 	},
 	{
 		id: 3,
-		question: '一下电影名字你对哪一个更感兴趣：',
+		question: '以下电影名字你对哪一个更感兴趣：',
 		type: 'movie'
 	}
 ];
 
-process.exit();
+var flowMap = questionList.map(function(value, index) {
+	return db.questionType.createQuestionType(value.id, value.question, value.type);
+})
+.concat(questionList.map(function(value, index) {
+	if(typeof(value.option) != 'undefined') {
+		return db.option.createOption(value.id, value.option)
+	}
+	else{
+		return Promise.resolve();
+	}
+}))
+.concat(db.user.createUser(setting.admin.name, setting.admin.password, 1));
+
+Promise.all(flowMap)
+	.then(function() {
+		console.log('init data done');
+		process.exit();
+	})
+	.catch(function(error) {
+		console.error(error);
+		process.exit();
+	});
+

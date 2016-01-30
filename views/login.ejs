@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Login</title>
+  <%- include('common-head') %>
+  <link rel="stylesheet" href="/stylesheets/login.css"/>
+</head>
+<body>
+  <div class="main">
+    <div class="login-container">
+      <p class="title">Login</p>
+      <form action="/login" class="login-form" method="post">
+        <div class="row">
+          <label for="form-name">Name:</label><input id="form-name" name="name" type="text" placeholder="Enter Name"/>
+        </div>
+        <div class="row">
+          <label for="form-psw">Password:</label><input id="form-psw" name="password" type="password" placeholder="Enter Password"/>
+        </div>
+        <input type="hidden" name="redirect" value="<%= redirectUrl%>"/>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <script src="/javascripts/commons.js"></script>
+  <script src="/javascripts/login.js"></script>
+</body>
+</html>

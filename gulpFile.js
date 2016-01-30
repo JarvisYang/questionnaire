@@ -95,4 +95,4 @@ gulp.task( 'watch',[ 'js', 'css' ], function() {
 });
 
 gulp.task( 'build', ['webpack-build', 'ejs'] );
-gulp.task( 'default', ['server', 'webpack', 'watch'] );
+gulp.task( 'default', ['server', 'watch'] );

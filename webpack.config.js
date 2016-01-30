@@ -11,6 +11,8 @@ module.exports = {
   'optimize-minimize': true,
   entry: {
     index: baseDir + 'index/index',
+    login: baseDir + 'login/index',
+    admin: baseDir + 'admin/index',
     mBase: baseDir + 'commons/m-base'
   },
   output: {
@@ -55,7 +57,9 @@ module.exports = {
       filename: "javascripts/commons.js",// (the filename of the commons chunk)
       minChunks: 2,// (Modules must be shared between 3 entries)
       chunks: [// (Only use these entries)
-        'index'
+        'index',
+        'login',
+        'admin'
       ]
     }),
     new CommonsChunkPlugin({

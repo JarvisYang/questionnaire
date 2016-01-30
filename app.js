@@ -4,11 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var mongoose = require('mongoose');
+var setting = require('./setting');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('./routes/routes');
 
 var app = express();
+
+var sessionMaxAge = 365*24*60*60*1000;//milliseconds
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,9 +26,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: setting.secretKey,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: sessionMaxAge
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.createConnection(setting.dbUrl),
+    autoRemove: 'disabled',
+    ttl: sessionMaxAge/1000
+  })
+}));
 
-app.use('/', routes);
-app.use('/users', users);
+app.use('/', routes.index);
+app.use('/api', routes.api);
+app.use('/login', routes.login);
+app.use('/admin', routes.admin);
+app.use('/logout', routes.logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
