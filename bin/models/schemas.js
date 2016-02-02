@@ -32,8 +32,9 @@ module.exports = function ( mongoose ){
 			questionId: {type: Number, unique: true},
 			values: [{
 				id: {type: Number, unique: true},
-				order: {type: Number, unique: true},
-				name: {type: String, unique: true}
+				order: {type: Number},
+				name: {type: String, unique: true},
+				status: {type: Boolean, default: false}
 			}]
 		})),
 		movieOption: new mongoose.Schema(getBaseSchema({
@@ -41,9 +42,10 @@ module.exports = function ( mongoose ){
 			movieType: [String],
 			status: Boolean,
 			values: [{
-				id: Number,
-				order: Number,
-				name: String
+				id: {type: Number, unique: true},
+				order: {type: Number},
+				name: {type: String, unique: true},
+				status: {type: Boolean, default: false}
 			}]
 		})),
 		user: new mongoose.Schema(getBaseSchema({

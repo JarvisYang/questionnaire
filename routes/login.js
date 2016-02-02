@@ -9,9 +9,9 @@ router.get('/', function(req, res, next) {
 
 	db.user.isAdminLogin(sid)
 		.then(function(isLogin) {
-			let redirectUrl = req.params['redirect'];
+			let redirectUrl = req.query['redirect'];
 			if(isLogin) {
-				if(typeof(redirectUrl) !== 'undefined' && /^\/.$/.test(redirectUrl)) {
+				if(typeof(redirectUrl) !== 'undefined' && /^\/.*$/.test(redirectUrl)) {
 					res.redirect(redirectUrl);
 				} else {
 					res.redirect('/admin');

@@ -25,6 +25,12 @@ var questionList = [
 	},
 	{
 		id: 3,
+		question: '你喜欢以下哪种电影类型：',
+		type: 'movieType',
+		option: ['惊悚', '动作', '喜剧', '科幻', '悬疑', '爱情', '动画', '犯罪']
+	},
+	{
+		id: 4,
 		question: '以下电影名字你对哪一个更感兴趣：',
 		type: 'movie'
 	}

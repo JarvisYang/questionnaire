@@ -4,7 +4,7 @@
 'use strict';
 var mongoose = require( 'mongoose' );
 var setting = require('../../setting');
-var controllers = require('../controllers/controllers');
+var getCryptoStr = require('../controllers/getCryptoStr');
 
 mongoose.connect(setting.dbUrl);
 var conn = mongoose.connection;
@@ -57,7 +57,13 @@ questionType = {
         upsert: true,
         new: true
       });
-  }
+  },
+	getQuestionTypeById: function(id) {
+		return model.questionType.findById(id);
+	},
+	getAllQuestionType: function() {
+		return model.questionType.find();
+	}
 };
 
 option = {
@@ -89,8 +95,21 @@ option = {
     } else {
       return Promise.reject(new Error('model/index.js: invalid parameters'));
     }
+  },
+	updateOption: function(optionId, values) {
+		return model.option.findById(optionId);
+	},
+	getOptionByQueId: function(questionId) {
+		return model.option.find({
+			questionId: questionId
+		})
+	}
+};
 
-  }
+movieOption = {
+	getAllMovieOption: function() {
+		return model.movieOption.find();
+	}
 };
 
 user = {
@@ -103,7 +122,7 @@ user = {
       },
       {
         $set: {
-          psw: controllers.getCryptoStr(psw),
+          psw: getCryptoStr(psw),
           priority: priority
         }
       },
@@ -147,7 +166,7 @@ user = {
 
 		return model.user.findOne({
 			userName: userName,
-			psw: controllers.getCryptoStr(userPsw)
+			psw: getCryptoStr(userPsw)
 		});
 	},
   isAdminLogin: function(sid) {

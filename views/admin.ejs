@@ -2,11 +2,46 @@
 <html lang="en">
 <head>
   <title>调查问卷</title>
-  <%- include('common-head') %>
+  <link rel="stylesheet" href="/stylesheets/commons.css"/>
   <link rel="stylesheet" href="/stylesheets/admin.css"/>
 </head>
 <body>
-
+<div class="main">
+  <div class="nav">
+    <% questionTypeList.forEach(function(value, index) {%>
+      <a href="/admin?qid=<%= value.id%>" data-id="<%= value.id%>" class="nav-item<% if(questionId == value.id){%> nav-item-active<%}%>"><%= value.name%></a>
+    <%}) %>
+  </div>
+  <div class="content">
+    <div class="question-container question-modify">
+      <button class="submit-modify-btn">保存</button>
+      <p class="title">问题</p>
+      <div class="question-form">
+        <input type="text" data-origin-question="<%= questionInfo.question%>" class="question-text" value="<%= questionInfo.question%>"/>
+      </div>
+    </div>
+    <div class="option-container">
+      <span class="title">选项</span>
+      <button class="option-save-btn">保存</button>
+      <ul class="option-list">
+        <% questionInfo.options.forEach(function(option, index) {%>
+        <li class="option-item" data-id="<%= option.optionInfo.id %>">
+          <span class="option-index"><%= index + 1 %>.</span>
+          <div class="option-value-list-container">
+            <% option.values.forEach(function(item) { %>
+            <div data-id="<%= item.id %>" data-modify="false" data-order="<%= item.order%>" data-status="<%= item.status %>" data-name="<%= item.name%>" class="option-value-container">
+              <input type="text" class="option-name" value="<%= item.name%>"/>
+              <a href="javascript:void(0)" class="delete-btn">x</a>
+            </div>
+            <% }) %>
+            <button class="option-value-add-btn">+</button>
+          </div>
+        </li>
+        <%}) %>
+      </ul>
+    </div>
+  </div>
+</div>
 <script src="/javascripts/commons.js"></script>
 <script src="/javascripts/admin.js"></script>
 </body>

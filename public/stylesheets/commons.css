@@ -427,8 +427,12 @@ body {
 }
 ul {
   margin: 0;
+  padding: 0;
 }
 li {
   padding: 0;
   list-style: none;
+}
+a {
+  text-decoration: none;
 }

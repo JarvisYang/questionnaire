@@ -1,0 +1,242 @@
+main{
+	width: 100%;
+	height: 100%;
+}
+
+.nav{
+	@borderRadius: 4px;
+	@color: #0275D8;
+	position: fixed;
+	top: 50%;
+	left: 100px;
+	width: 150px;
+	transform:translate(-50%, -50%);
+	-webkit-transform:translate(-50%, -50%);
+
+	.nav-item{
+		display: inline-block;
+		width: 100%;
+		line-height: 40px;
+		color: @color;
+		font-size: 20px;
+		text-align: center;
+		font-weight: 100;
+		border: 1px solid #ddd;
+		border-bottom: none;
+
+
+
+		&:first-child{
+			border-radius: @borderRadius @borderRadius 0 0;
+		}
+		&:last-child{
+			border-bottom: 1px solid #ddd;
+			border-radius: 0 0 @borderRadius @borderRadius;
+		}
+		&:hover{
+			border-color: @color;
+			color: #fff;
+			background-color: @color;
+		}
+	}
+	.nav-item-active{
+		color: #fff;
+		background-color: @color;
+		border-color: @color;
+	}
+
+
+}
+
+.content{
+	width: 900px;
+	margin: 0 auto;
+
+	.question-container{
+		border-bottom: 1px solid #eee;
+		padding-bottom: 20px;
+		position: relative;
+		.title{
+			font-size: 28px;
+			color: #333;
+			margin: 30px 0 0;
+		}
+		.submit-modify-btn{
+			display: none;
+			position: absolute;
+			right: 0;
+			top: 0;
+			box-sizing: border-box;
+			height: 40px;
+			width: 150px;
+			font-size: 22px;
+			text-align: center;
+			color: #fff;
+			background-color: #0275d8;
+			padding: 0;
+			border-radius: 4px;
+			border: none;
+			font-weight: 100;
+		}
+		.question-form{
+			@height: 40px;
+			width: 100%;
+			height: @height;
+			position: relative;
+			margin-top: 10px;
+			.question-text{
+				box-sizing: border-box;
+				padding: 0 20px;
+				width: 100%;
+				height: @height;
+				font-size: 22px;
+				color: #999;
+				border: 1px solid #fff;
+				outline: none;
+				border-radius: 4px;
+
+				&:focus{
+					border: 1px solid #66AFE9;
+					color: #333;
+					background-color: #fcfcfc;
+				}
+			}
+
+			//.submit-modify-btn{
+			//	display: none;
+			//	position: absolute;
+			//	right: 0;
+			//	top: 0;
+			//	box-sizing: border-box;
+			//	height: @height;
+			//	width: 150px;
+			//	font-size: 22px;
+			//	text-align: center;
+			//	color: #fff;
+			//	background-color: #0275d8;
+			//	padding: 0;
+			//	border-radius: 4px;
+			//	border: none;
+			//	font-weight: 100;
+			//}
+		}
+	}
+
+	.question-modify{
+		.submit-modify-btn{
+			display: block;
+		}
+		.question-form{
+			.question-text{
+				border: 1px solid #66AFE9;
+				color: #333;
+				background-color: #fcfcfc;
+			}
+			//.submit-modify-btn{
+			//	display: block;
+			//}
+		}
+	}
+
+	.option-container {
+		position: relative;
+		margin-top: 30px;
+		.title {
+			font-size: 28px;
+			color: #333;
+			margin: 30px 0 0;
+		}
+		.option-save-btn{
+			position: absolute;
+			right: 0;
+			top: 0;
+			box-sizing: border-box;
+			height: 40px;
+			width: 150px;
+			font-size: 22px;
+			text-align: center;
+			color: #fff;
+			background-color: #0275d8;
+			padding: 0;
+			border-radius: 4px;
+			border: none;
+			font-weight: 100;
+			margin-left: 20px;
+		}
+
+		.option-list{
+			position: relative;
+			width: 100%;
+
+			.option-item{
+				@height: 40px;
+				width: 100%;
+				box-sizing: border-box;
+				padding-left: 30px;
+				margin-top: 10px;
+
+				.option-index{
+					position: absolute;
+					top: 0;
+					left: 5px;
+					line-height: @height;
+					font-size: 18px;
+				}
+				.option-value-list-container{
+					width: 100%;
+					border: 1px solid #eee;
+					border-width: 1px 0 0 1px;
+				}
+				.option-value-add-btn{
+					position: relative;
+					display: inline-block;
+					box-sizing: border-box;
+					width: 25%;
+					height: @height+1px;
+					border: 1px solid #eee;
+					border-width: 0 1px 1px 0;
+					padding: 0;
+					color: #fff;
+					background-color: #e3e3e3;
+					font-size: 24px;
+					font-weight: 100;
+					outline: none;
+					vertical-align: top;
+				}
+				.option-value-container{
+					position: relative;
+					display: inline-block;
+					box-sizing: border-box;
+					width: 25%;
+					//height: @height;
+					font-size: 18px;
+					border: 1px solid #f1f1f1;
+					border-width: 0 1px 1px 0;
+					.option-name{
+						border: none;
+						outline: none;
+						line-height: @height;
+						box-sizing: border-box;
+						width: 100%;
+						color: #444;
+						padding: 0 20px 0 10px;
+						vertical-align: top;
+
+						&:focus{
+							color: #333;
+							background-color: #fafafa;
+						}
+					}
+					.delete-btn{
+						position: absolute;
+						top: 0;
+						right: 15px;
+						color: #ccc;
+						line-height: @height;
+						font-weight: 100;
+					}
+				}
+			}
+		}
+	}
+}
