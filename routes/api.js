@@ -2,37 +2,74 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../bin/models/index');
+var controller = require('../bin/controllers/controllers');
 
 router.post('/update/option', function(req, res, next) {
-	var optionId = req.body.optionId;
-	var optionValue = req.body.values;
+	db.user.isAdminLogin(req.sessionID).then(function(isLogin) {
+		if(isLogin) {
+			let optionList = req.body.optionList;
 
-	if(typeof(optionId) === 'undefined' || typeof(optionValue) === 'undefined') {
-		res.json({
-			status: false,
-			msg: '参数错误'
-		})
-	}
+			if(typeof(optionList) === 'undefined') {
+				res.json({
+					status: false,
+					msg: '参数错误'
+				})
+			}
 
+			optionList = JSON.parse(req.body.optionList);
 
-	res.json({
-		status: true
+			controller.updateOption(optionList).then(function(data) {
+				res.json({
+					status: true
+				});
+			}).catch(function(e) {
+				res.json({
+					status: true
+				});
+				console.error(e)
+			});
+		}
+		else{
+			res.json({
+				status: false,
+				msg: '用户未登录'
+			})
+		}
 	});
 });
 router.post('/update/questiontype', function(req, res, next) {
-	var optionId = req.body.optionId;
-	var optionValue = req.body.values;
+	db.user.isAdminLogin(req.sessionID).then(function(isLogin) {
+		if(isLogin) {
+			let questionId = req.body.questionId;
+			let question = req.body.question;
 
-	if(typeof(optionId) === 'undefined' || typeof(optionValue) === 'undefined') {
-		res.json({
-			status: false,
-			msg: '参数错误'
-		})
-	}
+			questionId = typeof(questionId) === 'undefined'? 4: questionId;
+			questionId = questionId > 4 || questionId < 1? 1: questionId;
 
+			if(typeof(questionId) === 'undefined' || typeof(question) === 'undefined') {
+				res.json({
+					status: false,
+					msg: '参数错误'
+				})
+			}
 
-	res.json({
-		status: true
+			db.questionType.updateQuestionType(questionId, question).then(function(data) {
+				res.json({
+					status: true
+				});
+			}).catch(function(e) {
+				res.json({
+					status: false,
+					msg: e
+				})
+			});
+		}
+		else{
+			res.json({
+				status: false,
+				msg: '用户未登录'
+			})
+		}
 	});
 });
 

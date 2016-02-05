@@ -15,6 +15,7 @@ var app = express();
 
 var sessionMaxAge = 365*24*60*60*1000;//milliseconds
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -76,6 +77,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

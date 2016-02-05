@@ -194,3 +194,6 @@ main {
   line-height: 40px;
   font-weight: 100;
 }
+.content .option-container .option-list .option-item .option-value-error .option-name {
+  background-color: #FF4047;
+}

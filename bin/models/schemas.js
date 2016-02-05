@@ -31,10 +31,11 @@ module.exports = function ( mongoose ){
 		option: new mongoose.Schema(getBaseSchema({
 			questionId: {type: Number, unique: true},
 			values: [{
-				id: {type: Number, unique: true},
+				//id: {type: mongoose.Schema.Types.ObjectId, unique: true},
 				order: {type: Number},
-				name: {type: String, unique: true},
-				status: {type: Boolean, default: false}
+				name: {type: String, default: ''},
+				status: {type: Boolean, default: false},
+				delete: {type: Boolean, default: false}
 			}]
 		})),
 		movieOption: new mongoose.Schema(getBaseSchema({
@@ -42,10 +43,11 @@ module.exports = function ( mongoose ){
 			movieType: [String],
 			status: Boolean,
 			values: [{
-				id: {type: Number, unique: true},
+				//id: {type: Number, unique: true},
 				order: {type: Number},
 				name: {type: String, unique: true},
-				status: {type: Boolean, default: false}
+				status: {type: Boolean, default: false},
+				delete: {type: Boolean, default: false}
 			}]
 		})),
 		user: new mongoose.Schema(getBaseSchema({

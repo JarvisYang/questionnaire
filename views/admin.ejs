@@ -25,15 +25,16 @@
       <button class="option-save-btn">保存</button>
       <ul class="option-list">
         <% questionInfo.options.forEach(function(option, index) {%>
-        <li class="option-item" data-id="<%= option.optionInfo.id %>">
+        <li class="option-item" data-delete="" data-id="<%= option.optionInfo.id %>">
           <span class="option-index"><%= index + 1 %>.</span>
           <div class="option-value-list-container">
-            <% option.values.forEach(function(item) { %>
+            <% option.values.forEach(function(item) {
+              if(item.delete === false) { %>
             <div data-id="<%= item.id %>" data-modify="false" data-order="<%= item.order%>" data-status="<%= item.status %>" data-name="<%= item.name%>" class="option-value-container">
               <input type="text" class="option-name" value="<%= item.name%>"/>
               <a href="javascript:void(0)" class="delete-btn">x</a>
             </div>
-            <% }) %>
+            <% }}) %>
             <button class="option-value-add-btn">+</button>
           </div>
         </li>

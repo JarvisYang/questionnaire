@@ -17,7 +17,6 @@ router.get('/', function(req, res, next) {
 		    db.questionType.getAllQuestionType(),
 		    controller.getQuestionInfo(questionId)
 	    ]).then(function(results) {
-		    console.log(JSON.stringify(results))
 			  let questionType = [];
 
 		    results[0].forEach(function(value, index) {
@@ -27,7 +26,6 @@ router.get('/', function(req, res, next) {
 				    name: questionTypeName[value.type]
 			    });
 		    });
-
 
 		    res.render('admin', {
 			    questionTypeList: questionType,
