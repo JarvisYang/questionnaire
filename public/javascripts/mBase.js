@@ -112,11 +112,11 @@
 	    window.mBase = mBase;
 	  }
 	})();
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)(module)))
 
 /***/ },
 
-/***/ 6:
+/***/ 11:
 /***/ function(module, exports) {
 
 	module.exports = function(module) {

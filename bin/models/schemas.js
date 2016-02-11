@@ -24,7 +24,7 @@ module.exports = function ( mongoose ){
 			seq: { type: Number, default: 0 }
 		})),
 		questionType: new mongoose.Schema(getBaseSchema({
-			_id: Number,
+			qid: {type: Number, unique: true},
 			type: {type: String, unique: true},
 			question: String
 		})),

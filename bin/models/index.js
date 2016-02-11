@@ -49,7 +49,11 @@ counter = {
 
 questionType = {
   createQuestionType: function(id, question, type) {
-    return model.questionType.findByIdAndUpdate(id, {
+    console.log(id, question, type);
+    return model.questionType.findOneAndUpdate({
+        qid: id
+      },
+      {
         'type': type,
         'question': question
       },
@@ -58,14 +62,19 @@ questionType = {
         new: true
       });
   },
-	getQuestionTypeById: function(id) {
-		return model.questionType.findById(id);
+	getQuestionTypeByQid: function(id) {
+		return model.questionType.findOne({
+      qid: id
+    });
 	},
 	getAllQuestionType: function() {
 		return model.questionType.find();
 	},
 	updateQuestionType: function(queId, question) {
-		return model.questionType.findByIdAndUpdate(queId, {
+		return model.questionType.findOneAndUpdate({
+        qid: queId
+      },
+      {
 				$set: {
 					'question': question
 				}

@@ -13,6 +13,7 @@ module.exports = {
     index: baseDir + 'index/index',
     login: baseDir + 'login/index',
     admin: baseDir + 'admin/index',
+    'admin.movie': baseDir + 'admin/movieOption',
     mBase: baseDir + 'commons/m-base'
   },
   output: {
@@ -58,8 +59,16 @@ module.exports = {
       minChunks: 2,// (Modules must be shared between 3 entries)
       chunks: [// (Only use these entries)
         'index',
-        'login',
-        'admin'
+        'login'
+      ]
+    }),
+    new CommonsChunkPlugin({
+      name: "admin.commons",// (the commons chunk name)
+      filename: "javascripts/admin.commons.js",// (the filename of the commons chunk)
+      minChunks: 2,// (Modules must be shared between 3 entries)
+      chunks: [// (Only use these entries)
+        'admin',
+        'admin.movie'
       ]
     }),
     new CommonsChunkPlugin({

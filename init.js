@@ -50,7 +50,8 @@ var flowMap = questionList.map(function(value, index) {
 .concat(db.user.createUser(setting.admin.name, setting.admin.password, 1));
 
 Promise.all(flowMap)
-	.then(function() {
+	.then(function(results) {
+		console.log(results)
 		console.log('init data done');
 		process.exit();
 	})

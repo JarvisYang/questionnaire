@@ -40,13 +40,10 @@ router.post('/update/option', function(req, res, next) {
 router.post('/update/questiontype', function(req, res, next) {
 	db.user.isAdminLogin(req.sessionID).then(function(isLogin) {
 		if(isLogin) {
-			let questionId = req.body.questionId;
+			let questionId = Number(req.body.questionId);
 			let question = req.body.question;
 
-			questionId = typeof(questionId) === 'undefined'? 4: questionId;
-			questionId = questionId > 4 || questionId < 1? 1: questionId;
-
-			if(typeof(questionId) === 'undefined' || typeof(question) === 'undefined') {
+			if(isNaN(questionId) || typeof(question) === 'undefined') {
 				res.json({
 					status: false,
 					msg: '参数错误'

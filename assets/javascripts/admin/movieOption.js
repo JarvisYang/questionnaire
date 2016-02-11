@@ -4,7 +4,7 @@
 
 require('./commons');
 
-require('../../stylesheets/admin/index.less');
+require('../../stylesheets/admin/movieOption.less');
 
 var index = {
 	init: function() {

@@ -1,0 +1,9 @@
+.content .option-container .add-option-item-btn {
+  width: 100%;
+  display: inline-block;
+  color: #fff;
+  background-color: #e3e3e3;
+  font-size: 24px;
+  font-weight: 100;
+  outline: none;
+}

@@ -11,12 +11,12 @@ function getQuestionInfo(queId) {
 		return getMovieInfo();
 	}
 	return Promise.all([
-		db.questionType.getQuestionTypeById(queId),
+		db.questionType.getQuestionTypeByQid(queId),
 		db.option.getOptionByQueId(queId)
 	]).then(function(results) {
 		var data = {
 			question: results[0].question,
-			questionId: results[0]['_id'],
+			questionId: results[0]['id'],
 			questionName: questionTypeName[results[0].type],
 			options: []
 		};
@@ -47,12 +47,12 @@ function getQuestionInfo(queId) {
 
 function getMovieInfo() {
 	return Promise.all([
-		db.questionType.getQuestionTypeById(4),
+		db.questionType.getQuestionTypeByQid(4),
 		db.movieOption.getAllMovieOption()
 	]).then(function(results) {
 		var data = {
 			question: results[0].question,
-			questionId: results[0]['_id'],
+			questionId: results[0]['id'],
 			questionName: questionTypeName[results[0].type],
 			options: []
 		};
