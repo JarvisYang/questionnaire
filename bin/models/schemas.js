@@ -41,10 +41,12 @@ module.exports = function ( mongoose ){
 		movieOption: new mongoose.Schema(getBaseSchema({
 			movieId: Number,
 			movieType: [String],
+			deleteMovieType: [String],
 			status: Boolean,
+			movieName: String,
 			values: [{
 				//id: {type: Number, unique: true},
-				order: {type: Number},
+				order: {type: Number, default: 0},
 				name: {type: String, unique: true},
 				status: {type: Boolean, default: false},
 				delete: {type: Boolean, default: false}

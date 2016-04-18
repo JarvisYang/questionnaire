@@ -1,9 +1,193 @@
 .content .option-container .add-option-item-btn {
   width: 100%;
+  line-height: 50px;
   display: inline-block;
   color: #fff;
   background-color: #e3e3e3;
   font-size: 24px;
   font-weight: 100;
   outline: none;
+  border: 1px solid #ddd;
+  margin-top: 30px;
+}
+.content .option-container .option-list {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+}
+.content .option-container .option-list .option-item {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 0 15px 30px;
+}
+.content .option-container .option-list .option-item:nth-child(2n+1) {
+  background-color: #e8e8e8;
+}
+.content .option-container .option-list .option-item:nth-child(2n) {
+  background-color: #f9f9f9;
+}
+.content .option-container .option-list .option-item .item-header {
+  width: 100%;
+  height: 40px;
+}
+.content .option-container .option-list .option-item .item-header .option-index {
+  font-size: 18px;
+  line-height: 40px;
+}
+.content .option-container .option-list .option-item .item-header .header-btn {
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 100;
+  padding: 0;
+  border-radius: 4px;
+  border: none;
+  float: right;
+  margin-right: 15px;
+}
+.content .option-container .option-list .option-item .item-header .option-item-save-btn {
+  background-color: #0275d8;
+}
+.content .option-container .option-list .option-item .item-header .option-item-delete-btn {
+  background-color: #bbbbbb;
+}
+.content .option-container .option-list .option-item .question-info {
+  width: 100%;
+}
+.content .option-container .option-list .option-item .question-info .row {
+  width: 100%;
+  min-height: 40px;
+}
+.content .option-container .option-list .option-item .question-info .row .name {
+  font-size: 18px;
+  line-height: 40px;
+  color: #333;
+  margin: 0;
+  vertical-align: middle;
+}
+.content .option-container .option-list .option-item .question-info .movie-id-row .movie-id-ipt {
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 0 15px;
+  height: 40px;
+  width: 150px;
+  outline: none;
+  vertical-align: middle;
+  font-size: 18px;
+  font-weight: 100;
+  color: #666;
+  border-radius: 4px;
+}
+.content .option-container .option-list .option-item .question-info .movie-id-row .movie-id-text {
+  line-height: 40px;
+  vertical-align: middle;
+  font-size: 18px;
+  font-weight: 100;
+  color: #666;
+}
+.content .option-container .option-list .option-item .question-info .movie-id-row .movie-id-ipt {
+  display: none;
+}
+.content .option-container .option-list .option-item .question-info .movie-id-row .add-movie-id-btn {
+  display: none;
+  box-sizing: border-box;
+  height: 40px;
+  width: 80px;
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  background-color: #0275d8;
+  padding: 0;
+  border-radius: 4px;
+  border: none;
+  font-weight: 100;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+.content .option-container .option-list .option-item .question-info .movie-id-row .movie-en-name {
+  font-size: 18px;
+  font-weight: 100;
+  color: #666;
+  line-height: 40px;
+  margin-left: 40px;
+  vertical-align: middle;
+}
+.content .option-container .option-list .option-item .question-info .movie-type-row .movie-type-list {
+  width: 100%;
+}
+.content .option-container .option-list .option-item .question-info .movie-type-row .movie-type-list .movie-type-item {
+  display: inline-block;
+  background-color: #fff;
+  border: 1px #aaa solid;
+  padding: 0 0 0 10px;
+  margin-right: 10px;
+  border-radius: 2px;
+}
+.content .option-container .option-list .option-item .question-info .movie-type-row .movie-type-list .movie-type-item .movie-type-name {
+  line-height: 16px;
+  font-size: 12px;
+  color: #333;
+}
+.content .option-container .option-list .option-item .question-info .movie-type-row .movie-type-list .movie-type-item .movie-type-delete-btn {
+  line-height: 16px;
+  font-size: 12px;
+  color: #ccc;
+  padding: 0 10px;
+}
+.content .option-container .option-list .option-item .question-info .movie-name-row .movie-ch-name-list .movie-ch-name-item {
+  display: inline-block;
+  height: 36px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  margin-right: 15px;
+}
+.content .option-container .option-list .option-item .question-info .movie-name-row .movie-ch-name-list .movie-ch-name-item .option-status-checkbox-show {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  box-sizing: border-box;
+  border: 1px solid #666;
+}
+.content .option-container .option-list .option-item .question-info .movie-name-row .movie-ch-name-list .movie-ch-name-item .option-status-checkbox-hide {
+  display: none;
+  vertical-align: middle;
+  margin: 0 15px;
+}
+.content .option-container .option-list .option-item .question-info .movie-name-row .movie-ch-name-list .movie-ch-name-item .ch-name {
+  font-size: 16px;
+  color: #333;
+  line-height: 36px;
+  vertical-align: middle;
+}
+.content .option-container .option-list .option-item .question-info .movie-name-row .movie-ch-name-list .movie-ch-name-item .movie-ch-name-delete-btn {
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 36px;
+  color: #666;
+  vertical-align: middle;
+  padding: 0 15px;
+}
+.content .option-container .option-list .new-option-item .item-header .header-btn {
+  display: none;
+}
+.content .option-container .option-list .new-option-item .question-info .movie-id-row .add-movie-id-btn {
+  display: inline-block;
+}
+.content .option-container .option-list .new-option-item .question-info .movie-id-row .movie-id-ipt {
+  display: inline-block;
+}
+.content .option-container .option-list .new-option-item .question-info .movie-id-row .movie-id-text {
+  display: none;
+}
+.content .option-container .option-list .new-option-item .question-info .movie-id-row .movie-en-name {
+  display: none;
+}
+.content .option-container .option-list .new-option-item .question-info .movie-name-row {
+  display: none;
+}
+.content .option-container .option-list .new-option-item .question-info .movie-type-row {
+  display: none;
 }

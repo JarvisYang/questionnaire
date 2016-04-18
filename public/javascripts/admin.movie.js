@@ -15,16 +15,13 @@ webpackJsonp([1],{
 
 	var index = {
 		init: function init() {
-			this.optionValueListContainer = $('.option-value-list-container');
 			this.questionContainer = $('.question-container');
 			this.questionSaveBtn = this.questionContainer.find('.submit-modify-btn');
+			this.addNewOptionItemBtn = $('.add-option-item-btn');
 			this.optionSaveBtn = $('.option-save-btn');
 			this.questionId = Number($('.nav-item-active').data('id'));
 			this.getOptionList();
 			this.bind();
-		},
-		getOptionValueEleTpl: function getOptionValueEleTpl() {
-			return '<div data-id="" data-modify="true" data-order="" data-status="" data-name="" class="option-value-container option-value-add">\n              <input type="text" class="option-name"/>\n              <a href="javascript:void(0)" class="delete-btn">x</a>\n            </div>';
 		},
 		updateQuestion: function updateQuestion() {
 			var self = this;
@@ -76,81 +73,68 @@ webpackJsonp([1],{
 			var optionNameValue = optionIpt.val();
 			var optionNameOriginValue = optionIpt.parent();
 		},
-		checkOptionList: function checkOptionList() {
-			var $optionItem = $('.option-item');
-			var hasError = false;
-
-			$optionItem.find('.option-value-error').removeClass('option-value-error');
-
-			$optionItem.each(function (_index, item) {
-				var optionValueMap = new Map();
-				var optionValueList = $(item).find('.option-value-container');
-
-				optionValueList.each(function (index, value) {
-					var optionName = $(value).find('.option-name').val();
-
-					if (optionName === '') {
-						hasError = true;
-
-						$(value).addClass('option-value-error');
-					} else if (optionValueMap.has(optionName)) {
-						hasError = true;
-						$(value).addClass('option-value-error');
-						optionValueList.eq(optionValueMap.get(optionName)).addClass('option-value-error');
-					} else {
-						optionValueMap.set(optionName, index);
-					}
-				});
+		checkOptionList: function checkOptionList() {},
+		getOptionList: function getOptionList() {},
+		getOptionItemTpl: function getOptionItemTpl(data, optionIndex) {
+			var movieTypeTpl = '';
+			var chNameTpl = '';
+			data.movieTypes.forEach(function (type) {
+				movieTypeTpl += '<li class="movie-type-item" data-id="' + type.id + '"><span class="movie-type-name">' + type.typeName + '</span><a href="javascript:void(0)" class="movie-type-delete-btn">x</a></li>';
 			});
-
-			return hasError;
+			data.chNameList.forEach(function (chName, index) {
+				chNameTpl += '\n    \t\t<li data-id="<%= optionValue.id%>" class="movie-ch-name-item">\n    \t\t\t<input type="checkbox" id="option-status-checkbox-hide-' + optionIndex + '-' + index + '" class="option-status-checkbox-hide"/>\n    \t\t\t<label class="option-status-checkbox-show" for="option-status-checkbox-hide-' + optionIndex + '-' + index + '"></label>\n    \t\t\t<span class="ch-name">' + chName + '</span>\n    \t\t\t<a href="javascript:void(0)" class="movie-ch-name-delete-btn">x</a>\n    \t\t</li>\n\t\t\t';
+			});
+			return '<div class="row movie-id-row">\n    \t<span class="name">电影ID：</span><span class="movie-id-text">' + data.movieId + '</span><span class="movie-en-name">' + data.enName + '</span>\n    </div>\n    <div class="row movie-type-row">\n    \t<p class="name">电影类型：</p>\n    \t<ul class="movie-type-list">' + movieTypeTpl + '</ul>\n    </div>\n    <div class="row movie-name-row">\n    \t<p class="name">电影中文名：</p>\n    \t<ul class="movie-ch-name-list">' + chNameTpl + '</ul>\n    </div>\n\t\t';
 		},
-		getOptionList: function getOptionList() {
-			var optionList = [];
-			$('.option-item').each(function (index, item) {
-				var $optionItem = $(item);
-				var optionInfo = {
-					optionId: $optionItem.data('id'),
-					values: [],
-					deleteList: $optionItem.data('delete')
-				};
-
-				$optionItem.find('.option-value-container').each(function (index, optionValue) {
-					var $optionValue = $(optionValue);
-					optionInfo.values.push({
-						id: $optionValue.data('id'),
-						name: $optionValue.find('.option-name').val()
-					});
-				});
-
-				optionList.push(optionInfo);
-			});
-
-			return optionList;
+		getNewOptionItemTpl: function getNewOptionItemTpl(data) {
+			return '<li data-id="<%= option.optionInfo.id %>" class="option-item new-option-item">\n    <div class="item-header">\n    \t<span class="option-index">' + ($('.option-item').length + 1) + '.</span>\n    \t<button class="option-item-save-btn header-btn">保存</button>\n    \t<button class="option-item-delete-btn header-btn">删除</button>\n    </div>\n    <div class="question-info">\n    \t<div class="row movie-id-row">\n      \t<span class="name">电影ID：</span><input type="text" class="movie-id-ipt" value=""/><button class="add-movie-id-btn">添加</button>\n      </div>\n     </div>\n    </li>';
 		},
 		bind: function bind() {
 			var self = this;
-
-			self.optionValueListContainer.on('click', '.option-value-add-btn', function (e) {
-				$(this).parent('.option-value-list-container').append(self.getOptionValueEleTpl(), $(this));
-			});
-			self.optionValueListContainer.on('click', '.delete-btn', function (e) {
-				var optionValueContainer = $(this).parents('.option-value-container');
-				var optionItem = $(this).parents('.option-item');
-				var optionId = optionValueContainer.data('id');
-				var deleteListStr = optionItem.data('delete');
-				var deleteList = new Set(deleteListStr == '' ? [] : optionItem.data('delete').split(','));
-				deleteList.add(optionId);
-
-				optionItem.data('delete', Array.from(deleteList.values()).toString());
-				optionValueContainer.remove();
-			});
 
 			self.questionSaveBtn.on('click', function (e) {
 				self.updateQuestion();
 			});
 			self.optionSaveBtn.on('click', function (e) {
 				self.updateOption();
+			});
+			self.addNewOptionItemBtn.on('click', function (e) {
+				$('.option-list').append(self.getNewOptionItemTpl());
+			});
+			$(document).on('click', '.add-movie-id-btn', function () {
+				var parentNode = $(this).parents('.new-option-item');
+				var optionIndex = parentNode.data('optionIndex');
+				try {
+					var movieId = parentNode.find('.movie-id-ipt').val();
+					if (movieId === '' || !/^[0-9]{5,10}$/.test(movieId)) {
+						alert('id错误');
+					} else {
+						$.ajax({
+							type: 'GET',
+							url: '/api/movie/info/get',
+							data: {
+								movieId: movieId
+							},
+							success: function success(data) {
+								if (data.status) {
+									parentNode.removeClass('new-option-item');
+									parentNode.find('.question-info').html(self.getOptionItemTpl(data.data, optionIndex));
+								} else {
+									alert(data.msg);
+								}
+							},
+							error: function error(e) {
+								alert(e.message);
+							}
+						});
+					}
+				} catch (err) {
+					alert(err.message);
+				}
+			});
+
+			$(document).on('click', '.movie-type-delete-btn', function () {
+				var parentNode = $(this).parents('.movie-type-item');
 			});
 		}
 	};

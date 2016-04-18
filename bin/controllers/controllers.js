@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 
 function getQuestionInfo(queId) {
 	if(queId == 4) {
-		return getMovieInfo();
+		return getAllMovieInfo();
 	}
 	return Promise.all([
 		db.questionType.getQuestionTypeByQid(queId),
@@ -45,39 +45,99 @@ function getQuestionInfo(queId) {
 	});
 }
 
-function getMovieInfo() {
+function getAllMovieInfo() {
 	return Promise.all([
 		db.questionType.getQuestionTypeByQid(4),
 		db.movieOption.getAllMovieOption()
 	]).then(function(results) {
+		//var data = {
+		//	question: results[0].question,
+		//	questionId: results[0]['id'],
+		//	questionName: questionTypeName[results[0].type],
+		//	options: []
+		//};
+
 		var data = {
 			question: results[0].question,
 			questionId: results[0]['id'],
 			questionName: questionTypeName[results[0].type],
-			options: []
+			options: [{
+				optionInfo: {
+					id: 333,
+					movieId: 11111,
+					movieType: ['动作', '爱情'],
+					deleteMovieType: ['动画', '惊悚'],
+					movieName: 'hello world'
+				},
+				values: [{
+					id: 11111111111,
+					order: 0,
+					name: '帅的不要不要的',
+					status: false,
+					delete: false
+				},{
+					id: 222222222,
+					order: 0,
+					name: '帅的不要不要的',
+					status: true,
+					delete: false
+				},{
+					id: 11111111111,
+					order: 0,
+					name: '帅的不要不要的',
+					status: false,
+					delete: true
+				}]
+			}, {
+				optionInfo: {
+					movieId: 11111,
+					movieType: ['动作', '爱情'],
+					deleteMovieType: ['动画', '惊悚'],
+					movieName: 'hello world'
+				},
+				values: [{
+					id: 11111111111,
+					order: 0,
+					name: '帅的不要不要的',
+					status: false,
+					delete: false
+				},{
+					id: 222222222,
+					order: 0,
+					name: '帅的不要不要的',
+					status: true,
+					delete: false
+				},{
+					id: 11111111111,
+					order: 0,
+					name: '帅的不要不要的',
+					status: false,
+					delete: true
+				}]
+			}]
 		};
 
-		results[1].forEach(function(optionItem) {
-			let option = [];
-			optionItem.values.sort(function(pre, next) {
-				return pre.order - next.order;
-			}).forEach(function(value) {
-				option.push({
-					id: value.id,
-					order: value.order,
-					name: value.name,
-					status: value.status,
-					delete: value.delete
-				});
-			});
-			data.options.push({
-				optionInfo: {
-					movieId: optionItem.movieId,
-					movieType: optionItem.movieType
-				},
-				values:option
-			});
-		});
+		//results[1].forEach(function(optionItem) {
+		//	let option = [];
+		//	optionItem.values.sort(function(pre, next) {
+		//		return pre.order - next.order;
+		//	}).forEach(function(value) {
+		//		option.push({
+		//			id: value['_id'],
+		//			order: value.order,
+		//			name: value.name,
+		//			status: value.status,
+		//			delete: value.delete
+		//		});
+		//	});
+		//	data.options.push({
+		//		optionInfo: {
+		//			movieId: optionItem.movieId,
+		//			movieType: optionItem.movieType
+		//		},
+		//		values:option
+		//	});
+		//});
 
 		return Promise.resolve(data);
 	});
@@ -90,6 +150,23 @@ function updateOption(optionList) {
 	});
 
 	return Promise.all(promiseList);
+}
+
+function getMovieInfoByMovieId(_movieId) {
+	let movieId = Number(_movieId);
+	if(isNaN(movieId)) {
+		return null;
+	}
+	let movieData = require('./movieData');
+	let movieDataMap = new Map(movieData);
+
+	movieData = undefined;
+
+	if(movieDataMap.has(movieId)){
+		return movieDataMap.get(movieId);
+	} else {
+		return null;
+	}
 }
 
 function updateOptionPromise(_option) {
@@ -153,6 +230,7 @@ function updateOptionPromise(_option) {
 
 module.exports = {
 	getQuestionInfo: getQuestionInfo,
-	getMovieInfo: getMovieInfo,
-	updateOption: updateOption
+	getAllMovieInfo: getAllMovieInfo,
+	updateOption: updateOption,
+	getMovieInfoByMovieId: getMovieInfoByMovieId
 };

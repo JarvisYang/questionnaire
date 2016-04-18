@@ -22,6 +22,7 @@ router.get('/', function(req, res, next) {
 		    controller.getQuestionInfo(questionId)
 	    ]).then(function(results) {
 			  let questionType = [];
+		    let renderParam = {};
 
 		    results[0].forEach(function(value, index) {
 			    questionType.push({
@@ -31,18 +32,16 @@ router.get('/', function(req, res, next) {
 			    });
 		    });
 
+		    renderParam = {
+			    questionTypeList: questionType,
+			    questionInfo: results[1],
+			    questionId: questionId
+		    };
+
 		    if(questionId === 4) {
-			    res.render('admin-1', {
-				    questionTypeList: questionType,
-				    questionInfo: results[1],
-				    questionId: questionId
-			    });
+			    res.render('admin-1', renderParam);
 		    } else {
-			    res.render('admin', {
-				    questionTypeList: questionType,
-				    questionInfo: results[1],
-				    questionId: questionId
-			    });
+			    res.render('admin', renderParam);
 		    }
 	    }).catch(function(e) {
 		    console.error(e);

@@ -49,7 +49,6 @@ counter = {
 
 questionType = {
   createQuestionType: function(id, question, type) {
-    console.log(id, question, type);
     return model.questionType.findOneAndUpdate({
         qid: id
       },
@@ -86,6 +85,19 @@ questionType = {
 };
 
 option = {
+  getMovieType: function() {
+    return model.option.findOne({
+      questionId: 3
+    }).then(function(data) {
+      let typeMap = new Map();
+
+      data.values.forEach(function(item) {
+        typeMap.set(item.name, item);
+      });
+
+      return typeMap;
+    });
+  },
   createOption: function(questionId, optionValues) {
     if(optionValues instanceof Array || typeof(optionValues) == 'string') {
       if( typeof(optionValues) == 'string') {

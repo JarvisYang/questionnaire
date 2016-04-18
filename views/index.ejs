@@ -6,7 +6,25 @@
   <link rel="stylesheet" href="/stylesheets/index.css"/>
 </head>
 <body>
-
+<main>
+  <ul class="option-list">
+    <% optionList.forEach(function(option, index) { %>
+    <li data-id="<%= option.optionId%>" class="option-item">
+      <p class="option-question"><%= index + 1%>. <%= option.question%></p>
+      <form>
+        <ul class="option-value-list">
+          <% option.valueList.forEach(function(optionValue, valueIndex){%>
+          <li class="option-value-item" data-id="<%=optionValue.valueId%>">
+            <input type="<% if(option.inputType === 0) {%>radio<%} else {%>checkbox<%}%>" name="<%= option.optionId%>" id="value-input-<%=index%>-<%=valueIndex%>" class="value-input"/>
+            <label for="value-input-<%=index%>-<%=valueIndex%>" class="value-label"><div class="input-visible-<% if(option.inputType === 0) {%>radio<%} else {%>checkbox<%}%> value-input-visible"></div><%= optionValue.valueName%></label>
+          </li>
+          <%})%>
+        </ul>
+      </form>
+    </li>
+    <% }) %>
+  </ul>
+</main>
 <script src="/javascripts/commons.js"></script>
 <script src="/javascripts/index.js"></script>
 </body>

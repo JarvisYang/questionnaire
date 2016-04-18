@@ -1,0 +1,78 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+main {
+  width: 540px;
+  width: 10rem;
+}
+main .option-list .option-item {
+  padding-bottom: 10px;
+  padding-bottom: 0.18518519rem;
+}
+main .option-list .option-item:nth-child(2n + 1) {
+  background-color: #fcfcfc;
+}
+main .option-list .option-item:nth-child(2n) {
+  background-color: #f4f4f4;
+}
+main .option-list .option-item .option-question {
+  font-size: 28px;
+  font-size: 0.51851852rem;
+  line-height: 60px;
+  line-height: 1.11111111rem;
+  margin: 0;
+  padding-left: 10px;
+  padding-left: 0.18518519rem;
+}
+main .option-list .option-item .option-value-list .option-value-item {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 24px;
+  font-size: 0.44444444rem;
+  height: 50px;
+  height: 0.92592593rem;
+}
+main .option-list .option-item .option-value-list .option-value-item .value-label {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  height: 0.92592593rem;
+  line-height: 50px;
+  line-height: 0.92592593rem;
+  color: #666;
+}
+main .option-list .option-item .option-value-list .option-value-item .value-label .value-input-visible {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 15px;
+  width: 0.27777778rem;
+  height: 15px;
+  height: 0.27777778rem;
+  border: 2.5px solid #bbb;
+  border: 0.0462963rem solid #bbb;
+  margin: 0px 15px 0px 15px;
+  margin: 0rem 0.27777778rem 0rem 0.27777778rem;
+}
+main .option-list .option-item .option-value-list .option-value-item .value-label .input-visible-radio {
+  border-radius: 100%;
+}
+main .option-list .option-item .option-value-list .option-value-item .value-label .input-visible-checkbox {
+  -webkit-border-radius: 2.5px;
+  border-radius: 2.5px;
+  -webkit-border-radius: 0.0462963rem;
+  border-radius: 0.0462963rem;
+}
+main .option-list .option-item .option-value-list .option-value-item .value-input {
+  height: 50px;
+  height: 0.92592593rem;
+  width: 50px;
+  width: 0.92592593rem;
+  display: none;
+}
+main .option-list .option-item .option-value-list .option-value-item .value-input:checked + .value-label .value-input-visible {
+  background-color: #bbb;
+}
