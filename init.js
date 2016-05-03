@@ -5,24 +5,24 @@ var db = require('./bin/models/index');
 var setting = require('./setting');
 
 var questionList = [
-	{
-		id: 0,
-		question: '性别：',
-		type: 'sex',
-		option: ['男', '女']
-	},
-	{
-		id: 1,
-		question: '年级：',
-		type: 'grade',
-		option: ['大一', '大二', '大三', '大四', '大五', '研一', '研二', '研三', '博士', '博士后', '工作', '其他']
-	},
-	{
-		id: 2,
-		question: '专业：',
-		type: 'major',
-		option: ['哲学', '经济学', '管理学', '法学', '教育学', '文学', '历史学', '理学', '工学', '农学', '医学']
-	},
+	// {
+	// 	id: 0,
+	// 	question: '性别：',
+	// 	type: 'sex',
+	// 	option: ['男', '女']
+	// },
+	// {
+	// 	id: 1,
+	// 	question: '年级：',
+	// 	type: 'grade',
+	// 	option: ['大一', '大二', '大三', '大四', '大五', '研一', '研二', '研三', '博士', '博士后', '工作', '其他']
+	// },
+	// {
+	// 	id: 2,
+	// 	question: '专业：',
+	// 	type: 'major',
+	// 	option: ['哲学', '经济学', '管理学', '法学', '教育学', '文学', '历史学', '理学', '工学', '农学', '医学']
+	// },
 	{
 		id: 3,
 		question: '你喜欢以下哪种电影类型：',

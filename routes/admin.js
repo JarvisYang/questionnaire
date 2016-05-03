@@ -39,6 +39,7 @@ router.get('/', function(req, res, next) {
 		    };
 
 		    if(questionId === 4) {
+					console.log(renderParam.questionInfo.options)
 			    res.render('admin-1', renderParam);
 		    } else {
 			    res.render('admin', renderParam);

@@ -22,7 +22,7 @@
     </div>
     <div class="option-container">
       <span class="title">选项</span>
-      <button class="option-save-btn">保存全部</button>
+      <!--<button class="option-save-btn">保存全部</button>-->
       <ul class="option-list">
         <% questionInfo.options.forEach(function(option, optionIndex) {%>
         <li data-id="<%= option.optionInfo.id %>" data-option-index="<%= optionIndex %>" class="option-item">
@@ -38,23 +38,19 @@
             <div class="row movie-type-row">
               <p class="name">电影类型：</p>
               <ul class="movie-type-list">
-                <% option.optionInfo.movieType.forEach(function(movieType) { %>
-                <li class="movie-type-item"><span class="movie-type-name"><%= movieType %></span><a href="javascript:void(0)" class="movie-type-delete-btn">x</a></li>
-                <% })%>
+                <li class="movie-type-item"><span class="movie-type-name"><%= option.optionInfo.movieType %></span><a href="javascript:void(0)" class="movie-type-delete-btn">x</a></li>
               </ul>
             </div>
             <div class="row movie-name-row">
               <p class="name">电影中文名：</p>
               <ul class="movie-ch-name-list">
                 <% option.values.forEach(function(optionValue, valueIndex) {%>
-                  <% if(optionValue.delete === false) {%>
-                <li data-id="<%= optionValue.id%>" class="movie-ch-name-item">
-                  <input type="checkbox" <% if(optionValue.status === true) { %>checked<%}%> id="option-status-checkbox-hide-<%= optionIndex %>-<%= valueIndex %>" class="option-status-checkbox-hide"/>
-                  <label class="option-status-checkbox-show" for="option-status-checkbox-hide-<%= optionIndex %>-<%= valueIndex %>"></label>
+
+                <li data-id="<%= optionValue.id%>" class="movie-ch-name-item <% if(optionValue.delete === false) {%>movie-ch-name-item-show<%}else{%>movie-ch-name-item-delete<%}%>">
+                  <input type="checkbox" <% if(optionValue.status === true) { %>checked<%}%> class="option-status-checkbox"/>
                   <span class="ch-name"><%= optionValue.name %></span>
                   <a href="javascript:void(0)" class="movie-ch-name-delete-btn">x</a>
                 </li>
-                  <% }%>
                 <% })%>
               </ul>
             </div>

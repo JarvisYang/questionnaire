@@ -18,6 +18,12 @@
 		 width: 100%;
 		 margin-top: 20px;
 
+		 .option-item-modify{
+			 border: 1px solid red;
+		 }
+		 .new-option-item{
+			 border: 1px solid #0275D8;
+		 }
 
 		 .option-item{
 			 width: 100%;
@@ -164,23 +170,22 @@
 
 						 .movie-ch-name-item{
 							 @height: 36px;
-							 display: inline-block;
+							 display: none;
 							 height: @height;
 							 border: 1px solid #aaa;
 							 background-color: #fff;
 							 margin-right: 15px;
 
-							 .option-status-checkbox-show{
-								 @checkout-box-size: 10px;
-								 display: inline-block;
-								 width: @checkout-box-size;
-								 height: @checkout-box-size;
-								 box-sizing: border-box;
-								 border: 1px solid #666;
-							 }
+							 //.option-status-checkbox-show{
+								// @checkout-box-size: 10px;
+								// display: inline-block;
+								// width: @checkout-box-size;
+								// height: @checkout-box-size;
+								// box-sizing: border-box;
+								// border: 1px solid #666;
+							 //}
 
-							 .option-status-checkbox-hide{
-								 display: none;
+							 .option-status-checkbox{
 								 vertical-align: middle;
 								 margin: 0 15px;
 							 }
@@ -200,6 +205,14 @@
 								 vertical-align: middle;
 								 padding: 0 15px;
 							 }
+						 }
+
+
+						 .movie-ch-name-item-show{
+							 display: inline-block;
+						 }
+						 .movie-ch-name-item-delete{
+							 display: none;
 						 }
 					 }
 				 }

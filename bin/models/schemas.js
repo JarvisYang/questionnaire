@@ -30,6 +30,7 @@ module.exports = function ( mongoose ){
 		})),
 		option: new mongoose.Schema(getBaseSchema({
 			questionId: {type: Number, unique: true},
+			status: {type: Boolean, default: true},
 			values: [{
 				//id: {type: mongoose.Schema.Types.ObjectId, unique: true},
 				order: {type: Number},
@@ -40,20 +41,21 @@ module.exports = function ( mongoose ){
 		})),
 		movieOption: new mongoose.Schema(getBaseSchema({
 			movieId: Number,
-			movieType: [String],
+			movieType: String,
 			deleteMovieType: [String],
 			status: Boolean,
 			movieName: String,
+			delete: {type: Boolean, default: false},
 			values: [{
 				//id: {type: Number, unique: true},
 				order: {type: Number, default: 0},
-				name: {type: String, unique: true},
+				name: {type: String},
 				status: {type: Boolean, default: false},
 				delete: {type: Boolean, default: false}
 			}]
 		})),
 		user: new mongoose.Schema(getBaseSchema({
-			userName: {type: String, default: 'unknown', unique: true},
+			userName: {type: String, default: 'unknown'},
 			psw: String,
 			sid: [String],
 			priority: {type: Number, default : 0}

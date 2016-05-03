@@ -136,11 +136,7 @@ option = {
       {
         new: true
       }).then(function(data) {
-        if(data === null) {
-          return Promise.resolve(false);
-        } else {
-          return Promise.resolve(true);
-        }
+				return data;
       }, function(e) {
         return Promise.reject(new Error(e));
       });
@@ -158,8 +154,38 @@ option = {
 movieOption = {
 	getAllMovieOption: function() {
 		return model.movieOption.find({
-
+			delete: false
     });
+	},
+	update: function(_data) {
+		
+	},
+	create: function(_data) {
+		return model.movieOption.create({
+			movieId: _data.movieId,
+			movieType: _data.movieType,
+			movieName: _data.enName,
+			values: _data.chNameList.reduce(function(pre, next) {
+				pre.push({
+					name: next.name,
+					status: next.status || false,
+					delete: next.delete || false
+				});
+				return pre;
+			}, [])
+		});
+	},
+	delete: function(_id) {
+		return model.movieOption.findByIdAndUpdate(_id, {
+			$set: {
+				delete: true
+			}
+		},{
+			new: true,
+			fields: {
+				delete: 1
+			}
+		});
 	}
 };
 

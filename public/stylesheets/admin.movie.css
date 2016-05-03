@@ -15,6 +15,12 @@
   width: 100%;
   margin-top: 20px;
 }
+.content .option-container .option-list .option-item-modify {
+  border: 1px solid red;
+}
+.content .option-container .option-list .new-option-item {
+  border: 1px solid #0275D8;
+}
 .content .option-container .option-list .option-item {
   width: 100%;
   box-sizing: border-box;
@@ -138,21 +144,13 @@
   padding: 0 10px;
 }
 .content .option-container .option-list .option-item .question-info .movie-name-row .movie-ch-name-list .movie-ch-name-item {
-  display: inline-block;
+  display: none;
   height: 36px;
   border: 1px solid #aaa;
   background-color: #fff;
   margin-right: 15px;
 }
-.content .option-container .option-list .option-item .question-info .movie-name-row .movie-ch-name-list .movie-ch-name-item .option-status-checkbox-show {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  box-sizing: border-box;
-  border: 1px solid #666;
-}
-.content .option-container .option-list .option-item .question-info .movie-name-row .movie-ch-name-list .movie-ch-name-item .option-status-checkbox-hide {
-  display: none;
+.content .option-container .option-list .option-item .question-info .movie-name-row .movie-ch-name-list .movie-ch-name-item .option-status-checkbox {
   vertical-align: middle;
   margin: 0 15px;
 }
@@ -169,6 +167,12 @@
   color: #666;
   vertical-align: middle;
   padding: 0 15px;
+}
+.content .option-container .option-list .option-item .question-info .movie-name-row .movie-ch-name-list .movie-ch-name-item-show {
+  display: inline-block;
+}
+.content .option-container .option-list .option-item .question-info .movie-name-row .movie-ch-name-list .movie-ch-name-item-delete {
+  display: none;
 }
 .content .option-container .option-list .new-option-item .item-header .header-btn {
   display: none;
